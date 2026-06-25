@@ -13,10 +13,7 @@
 
 \title{基于 2.5D Residual U-Net 的 T1 MRI 去噪}
 
-\author{%
-课程期末作业：T1 MRI 去噪（T1\_noisy $\rightarrow$ T1\_clean）\\
-\texttt{PyTorch 可复现训练、评估与断点续传 Pipeline}
-}
+\author{}
 
 \begin{document}
 \maketitle
@@ -135,12 +132,12 @@ Residual U-Net 在全部指标上优于三种基线。PSNR 相比 Noisy 提升 1
 
 \section{定性分析}
 
-图~\ref{fig:qual_axial} 展示了测试病例 1000542 的 axial 中层切片。Residual U-Net 降低了 noisy 图像中的随机纹理噪声，同时保留脑室、皮层和深部结构边界。残余误差主要集中在组织边界附近。
+图~\ref{fig:qual_axial} 展示了高噪声测试病例 1051004 的 axial 切片。该病例中 Residual U-Net 相比 noisy 输入提升 1.96 dB PSNR。右侧两个误差图使用相同色标，显示 U-Net 输出相对 clean 的误差低于 noisy 输入，尤其是脑实质内部的随机误差明显减少。
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\linewidth]{1000542_axial.png}
-  \caption{测试病例 1000542 的 axial 视图：noisy、Residual U-Net 输出、clean 与绝对误差图。}
+  \includegraphics[width=\linewidth]{1051004_axial_compare.png}
+  \caption{高噪声测试病例 1051004 的 axial 视图：noisy、Residual U-Net 输出、clean、noisy 误差与 U-Net 误差。两个误差图共享同一色标。}
   \label{fig:qual_axial}
 \end{figure}
 
@@ -161,6 +158,6 @@ Residual U-Net 在全部指标上优于三种基线。PSNR 相比 Noisy 提升 1
 
 \section{结论}
 
-本项目完成了可复现、可断点续传的 T1 MRI 去噪 pipeline。主方法在测试集上达到 PSNR $43.01\pm1.82$ dB、SSIM $0.9959\pm0.0015$，并在所有测试病例上优于 Noisy、Gaussian smoothing 和 NLM。结果表明，2.5D 残差学习能在当前 Gaussian + Rician 混合噪声设置下稳定降低误差。当前实验的主要边界是：模型并非完整 3D 网络，结果基于单一病例级划分，且尚未在外部 MRI 数据上验证。
+本项目完成了可复现、可断点续传的 T1 MRI 去噪流程。主方法在测试集上达到 PSNR $43.01\pm1.82$ dB、SSIM $0.9959\pm0.0015$，并在所有测试病例上优于 Noisy、Gaussian smoothing 和 NLM。结果表明，2.5D 残差学习能在当前 Gaussian + Rician 混合噪声设置下稳定降低误差。当前实验的主要边界是：模型并非完整 3D 网络，结果基于单一病例级划分，且尚未在外部 MRI 数据上验证。
 
 \end{document}

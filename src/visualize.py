@@ -25,16 +25,20 @@ def parse_args() -> argparse.Namespace:
 def save_axial(caseid: str, noisy: np.ndarray, pred: np.ndarray, clean: np.ndarray, mask: np.ndarray, out_path) -> None:
     slices = np.where(mask.mean(axis=(0, 1)) > 0.01)[0]
     k = int(slices[len(slices) // 2]) if slices.size else noisy.shape[2] // 2
+    err = np.abs(np.clip(pred[:, :, k], 0, 1) - np.clip(clean[:, :, k], 0, 1))
+    m = mask[:, :, k]
+    err_vmax = float(np.percentile(err[m], 99)) if np.any(m) else float(np.percentile(err, 99))
+    err_vmax = max(err_vmax, 0.02)
     ims = [
         np.clip(noisy[:, :, k], 0, 1),
         np.clip(pred[:, :, k], 0, 1),
         np.clip(clean[:, :, k], 0, 1),
-        np.abs(np.clip(pred[:, :, k], 0, 1) - np.clip(clean[:, :, k], 0, 1)),
+        err,
     ]
     titles = ["noisy", "U-Net denoised", "clean", "|error|"]
     fig, axes = plt.subplots(1, 4, figsize=(14, 4), constrained_layout=True)
     for ax, im, title in zip(axes, ims, titles):
-        vmax = 0.25 if title == "|error|" else 1.0
+        vmax = err_vmax if title == "|error|" else 1.0
         h = ax.imshow(np.rot90(im), cmap="gray" if title != "|error|" else "magma", vmin=0, vmax=vmax)
         ax.set_title(title)
         ax.axis("off")
