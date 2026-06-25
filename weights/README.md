@@ -1,21 +1,18 @@
-# Model Checkpoints
+# 模型权重
 
-Model checkpoints are not committed to this repository because they are large.
+模型权重文件较大，因此不直接提交到 GitHub 仓库。
 
-Expected local layout after download:
+下载地址：
+
+```text
+https://drive.google.com/file/d/1GytKqEMeoEHM6e87vdCDSrrdNKzpEPVe/view?usp=drive_link
+```
+
+下载后请将文件放置为：
 
 ```text
 ckpt/best.pt
 ckpt/last.pt
 ```
 
-Use `ckpt/best.pt` for final evaluation and visualisation. Use `ckpt/last.pt`
-only when continuing training from the last saved epoch.
-
-The checkpoint files prepared for external upload are:
-
-```text
-best.pt
-last.pt
-SHA256SUMS.txt
-```
+`best.pt` 用于最终评估和可视化，`last.pt` 仅用于继续训练。

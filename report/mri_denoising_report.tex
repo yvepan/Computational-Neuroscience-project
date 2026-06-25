@@ -18,6 +18,12 @@
 \begin{document}
 \maketitle
 
+\begin{center}
+\small
+\textbf{GitHub 仓库：}\url{https://github.com/yvepan/Computational-Neuroscience-project}\\
+\textbf{模型权重：}\url{https://drive.google.com/file/d/1GytKqEMeoEHM6e87vdCDSrrdNKzpEPVe/view?usp=drive_link}
+\end{center}
+
 \begin{abstract}
 本实验实现 T1 MRI 从加噪图像到干净图像的监督式去噪。数据集包含 600 个病例，体积尺寸不固定，并包含 Gaussian 与 Rician 混合噪声。为避免信息泄漏，病例划分固定为 480/60/60，脑掩膜和归一化参数仅由 noisy 图像估计，clean 图像只作为训练标签和评估真值。主方法采用 2.5D Residual 2D U-Net，以相邻 axial 切片作为 3 通道输入，并预测噪声残差而非直接预测 clean 图像。在 60 个测试病例上，该方法达到 PSNR $43.01\pm1.82$ dB、SSIM $0.9959\pm0.0015$，相对 noisy 输入提升 1.25 dB PSNR，并在所有测试病例上优于 Gaussian smoothing 与 NLM 基线。
 \end{abstract}
