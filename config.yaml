@@ -1,0 +1,40 @@
+seed: 42
+data_dir: "E:/University knowledge/da3xia/jssjx/final project/extracted/cn_project_t1_noise2"
+split_path: "split.json"
+cache_dir: "cache"
+ckpt_dir: "ckpt"
+outputs_dir: "outputs"
+
+split:
+  train: 480
+  val: 60
+  test: 60
+
+preprocess:
+  mask_slice_min_fraction: 0.01
+
+train:
+  max_epochs: 60
+  batch_size: 16
+  patch_size: 192
+  samples_per_epoch: 24000
+  lru_cases_per_worker: 8
+  num_workers: 4
+  lr: 0.0001
+  weight_decay: 0.0001
+  base_channels: 48
+  early_stop_patience: 10
+  use_gradient_loss: true
+  grad_loss_weight: 0.1
+  ssim_weight: 0.2
+  val_batch_slices: 24
+  amp: true
+  save_every_steps: 0
+  save_every_epochs: 2
+
+eval:
+  batch_slices: 24
+  gaussian_sigma_grid: [0.4, 0.6, 0.8, 1.0, 1.2]
+  nlm_patch_size: 5
+  nlm_patch_distance: 6
+  nlm_h_factor: 0.8

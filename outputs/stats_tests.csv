@@ -1,0 +1,13 @@
+metric,comparison,mean_diff,std_diff,cohen_dz,wins_n,t_p,wilcoxon_p
+PSNR,ResidualUNet vs Noisy,+1.2508,0.3558,3.516,60/60,4.17e-35,1.63e-11
+PSNR,ResidualUNet vs Gaussian,+4.9238,1.2566,3.918,60/60,1.06e-37,1.63e-11
+PSNR,ResidualUNet vs NLM,+1.2412,0.2833,4.382,60/60,2.06e-40,1.63e-11
+SSIM,ResidualUNet vs Noisy,+0.0023,0.0014,1.577,60/60,8.39e-18,1.63e-11
+SSIM,ResidualUNet vs Gaussian,+0.0027,0.0004,6.033,60/60,2.59e-48,1.63e-11
+SSIM,ResidualUNet vs NLM,+0.0022,0.0011,1.916,60/60,1.42e-21,1.63e-11
+RMSE,ResidualUNet vs Noisy,-0.0012,0.0006,-2.145,60/60,6.33e-24,1.63e-11
+RMSE,ResidualUNet vs Gaussian,-0.0053,0.0007,-7.322,60/60,3.61e-53,1.63e-11
+RMSE,ResidualUNet vs NLM,-0.0012,0.0005,-2.450,60/60,8.37e-27,1.63e-11
+MAE,ResidualUNet vs Noisy,-0.0010,0.0005,-2.125,60/60,9.97e-24,1.63e-11
+MAE,ResidualUNet vs Gaussian,-0.0034,0.0004,-8.649,60/60,2.25e-57,1.63e-11
+MAE,ResidualUNet vs NLM,-0.0009,0.0004,-2.394,60/60,2.75e-26,1.63e-11
